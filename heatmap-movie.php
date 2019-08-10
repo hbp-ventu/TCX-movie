@@ -3,7 +3,7 @@
 if (count($argv) != 3) {
     echo "usage: heatmap-movie.php <tcxs> <output>\n";
     echo "\n";
-    echo "   <tcxs>    path to directory holding tcx files with names <date>-<time>.tcx\n";
+    echo "   <tcxs>    path to directory holding tcx files with names <date>_<time>.tcx\n";
     echo "   <output>  the name of the output AVI file\n";
     exit;
 }
