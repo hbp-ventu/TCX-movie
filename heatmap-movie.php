@@ -11,6 +11,7 @@ if (count($argv) != 3) {
 $tcxs = $argv[1]; // where the .tcx files are stored
 $filename = $argv[2];
 
+$tilesurl = 'http://MYTILSERVER/?s=c&z={z}&x={x}&y={y}';
 $zoom = 10; // map zoom
 $saveas = "/tmp/heatmap-frames/"; // temp storage for frames
 $cache = "/tmp/osm-cache/"; // temp storage for tiles
@@ -211,12 +212,21 @@ function fetch_tile($x, $y, $zoom) {
         if (filemtime($file) > time()-$too_old_minutes*60)
             return $file;
     }
-    $url = "https://tiles.microbizz.dk/?s=c&z=$zoom&x=$x&y=$y";
+    $url = get_url($x, $y, $zoom);
     echo "fetching tile $url\n";
     $png = file_get_contents($url);
     if (!$png)   return false;
     file_put_contents($file, $png);
     return $file;
+}
+
+function get_url($x, $y, $zoom) {
+    global $tilesurl;
+    $url = $tilesurl;
+    $url = str_replace("{x}", $x, $url);
+    $url = str_replace("{y}", $y, $url);
+    $url = str_replace("{z}", $zoom, $url);
+    return $url;
 }
 
 function get_distance($lat1, $lon1, $lat2, $lon2) {
