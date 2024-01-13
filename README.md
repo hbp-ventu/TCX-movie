@@ -1,5 +1,5 @@
-# heatmap movie
-Small PHP script for generating a movie from a sequence of .tcx files, from Endomondo or similar.
+# heatmap video
+Small PHP script for generating a video from a sequence of .tcx files, from Endomondo or similar.
 
 Requires that "mencoder" and codecs are installed. 
 Uses Openstreetmaps or a similar tile server for background; you will need to provide the URL for the server.
